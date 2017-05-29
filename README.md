@@ -18,6 +18,7 @@ https://github.com/monkeyshoulders/frontend-nanodegree-arcade-game.git
 
 ### List of Resources:
 Below is a list of resources that I found helpful in creating this game:
+
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS
 
 http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/
