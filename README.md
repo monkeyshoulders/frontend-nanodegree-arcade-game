@@ -19,9 +19,15 @@ https://github.com/monkeyshoulders/frontend-nanodegree-arcade-game.git
 ### List of Resources:
 Below is a list of resources that I found helpful in creating this game:
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS
+
 http://www.lostdecadegames.com/how-to-make-a-simple-html5-canvas-game/
+
 http://stackoverflow.com/questions/9772307/declaring-javascript-object-method-in-constructor-function-vs-in-prototype/9772864#9772864/
+
 http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes/
+
 http://www.w3schools.com/Tags/ref_canvas.asp
+
 http://benalman.com/news/2010/11/immediately-invoked-function-expression/
+
 http://blog.sklambert.com/object-oriented-javascript-classes/
