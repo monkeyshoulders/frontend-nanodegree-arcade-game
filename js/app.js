@@ -14,7 +14,7 @@ var enemyW = 96;
 var chars = [
   'images/char-boy.png',
   'images/char-pink-girl.png',
-  'images/char-princess-girl.png',
+  'images/char-princess-girl.png',  //check this
   'images/char-cat-girl.png',
   'images/char-horn-girl.png'
 ];
@@ -38,7 +38,7 @@ var Enemy = function(x, y, speed) {
 
 Enemy.prototype.update = function(dt) {
   this.x = this.x + this.speed * dt;
-  if (this.x <= xLimit) {
+  if (this.x <= xLimit) {                //check this
     this.x = enemyStart;
   }
 };
@@ -50,9 +50,9 @@ Enemy.prototype.render = function() {
 
 var collision = function() {
   if (enemy.x < player.x + playerW && enemy.x + enemyW > player.x && enemy.y < player.y + playerH && enemyH + enemy.y > player.y) {
-    player.restart;
-  }
-};
+    player.restart;                              //check this
+  }                                   // JS Hint- 53	Expected an assignment or function
+};                                       // call and instead saw an expression.
 
 var Player = function(x, y, speed) {
   this.x = x;
@@ -60,7 +60,7 @@ var Player = function(x, y, speed) {
   this.speed = speed;
   // this.sprite = 'images/char-boy.png';
   this.sprite = randChar; //this may be a mistake and need to be fixed with Karol
-  // TODO add player lives and scoring function
+
 };
 
 // Parameter: dt, a time delta between ticks
@@ -102,8 +102,8 @@ Player.prototype.handleInput = function(input) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-for (var i = 0; i < 3; i++) {
-  allEnemies[allEnemies.length] = new Enemy();
+for (var i = 0; i < 3; i++) {                       //check that everything is
+  allEnemies[allEnemies.length] = new Enemy();      //  being called
 }
 allEnemies.push();
 // Place the player object in a variable called player
