@@ -11,7 +11,7 @@ var playerW = 68;
 var enemyH = 64;
 var enemyW = 96;
 var initialPositions = [60, 145, 225];
-var eSpeed = [2, 4, 6, 8];
+var eSpeed = [2, 4, 6, 8, 10];
 var randomSpeed = eSpeed[Math.floor(Math.random() * eSpeed.length)];
 // var
 var chars = [
@@ -40,12 +40,10 @@ var Enemy = function(x, y, speed) {
 // all computers.
 
 Enemy.prototype.update = function(dt) {
-
-  this.x += this.speed;
- // this.x = this.x + this.speed * dt;
- // if (this.x <= xLimit) {                //check this
- //   this.x = enemyStart;
- // }
+ this.x += this.speed;
+ if (this.x >= xLimit) {                
+   this.x = enemyStart;
+ }
 
   this.checkCollision();
 };
