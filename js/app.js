@@ -2,7 +2,7 @@
 var blockHeight = 83;
 var blockWidth = 101;
 var xLimit = 505;
-var yLimit = 50;
+var yLimit = -30;
 var enemyStart = -100;
 var playerX = 200;
 var playerY = 400;
@@ -11,8 +11,6 @@ var playerW = 68;
 var enemyH = 64;
 var enemyW = 96;
 var initialPositions = [60, 145, 225];
-var eSpeed = [100, 250, 350, 500];
-var randomSpeed = eSpeed[Math.floor(Math.random() * eSpeed.length)];
 var chars = [
   'images/char-boy.png',
   'images/char-pink-girl.png',
@@ -26,17 +24,11 @@ var randChar = chars[Math.floor(Math.random() * chars.length)];
 // Enemies our player must avoid
 
 var Enemy = function(x, y, speed) {
-  this.x = x; //horizontal position
-  this.y = y; //verticle position
-  this.speed = randomSpeed;
+  this.x = x;
+  this.y = y;
+  this.speed = Math.floor(Math.random() * 350);
   this.sprite = 'images/enemy-bug.png';
 };
-
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-// You should multiply any movement by the dt parameter
-// which will ensure the game runs at the same speed for
-// all computers.
 
 Enemy.prototype.update = function(dt) {
  this.x = this.x + this.speed * dt;
@@ -65,16 +57,9 @@ var Player = function(x, y) {
   this.sprite = randChar;
 };
 
-// Parameter: dt, a time delta between ticks
-Player.prototype.update = function(dt) {
-  // You should multiply any movement by the dt parameter
-  // which will ensure the game runs at the same speed for
-  // all computers.
-  // this.x = 200;
-  // this.y = 400;
-  // if (this.y >= yLimit) { //reaches verticle limit
-  //   this.restart();
-  // }
+Player.prototype.update = function() {
+
+
 };
 
 Player.prototype.render = function() {
@@ -102,14 +87,13 @@ Player.prototype.handleInput = function(input) {
   }
 };
 
-
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
+
 for (var i = 0; i < 3; i++) {
-  // Next step: different x and y coordinates, use, for example, randomness
-  allEnemies[i] = new Enemy(-100, initialPositions[i], randomSpeed);
+// Next step: different x and y coordinates, use, for example, randomness
+  allEnemies[i] = new Enemy(-100, initialPositions[i]);
 }
 allEnemies.push();
 // Place the player object in a variable called player
