@@ -4,16 +4,15 @@ var blockWidth = 101;
 var xLimit = 505;
 var yLimit = 50;
 var enemyStart = -100;
-var playerX = 175;
-var playerY = 325;
+var playerX = 200;
+var playerY = 400;
 var playerH = 83;
 var playerW = 68;
 var enemyH = 64;
 var enemyW = 96;
 var initialPositions = [60, 145, 225];
-var eSpeed = [2, 4, 6, 8, 10];
+var eSpeed = [100, 250, 350, 500];
 var randomSpeed = eSpeed[Math.floor(Math.random() * eSpeed.length)];
-// var
 var chars = [
   'images/char-boy.png',
   'images/char-pink-girl.png',
@@ -40,11 +39,10 @@ var Enemy = function(x, y, speed) {
 // all computers.
 
 Enemy.prototype.update = function(dt) {
- this.x += this.speed;
- if (this.x >= xLimit) {                
+ this.x = this.x + this.speed * dt;
+ if (this.x >= xLimit) {
    this.x = enemyStart;
  }
-
   this.checkCollision();
 };
 
@@ -56,20 +54,15 @@ Enemy.prototype.render = function() {
 };
 
 Enemy.prototype.checkCollision = function() {
-  //console.log("checkCollision");
+//   if ((this.x == player.x) && (this.y == player.y)) {
+//       player.restart();
+//   }
+//
 };
-
-var collision = function() {
-  if (enemy.x < player.x + playerW && enemy.x + enemyW > player.x && enemy.y < player.y + playerH && enemyH + enemy.y > player.y) {
-    player.restart;                              //check this
-  }                                   // JS Hint- 53	Expected an assignment or function
-};                                       // call and instead saw an expression.
-
 var Player = function(x, y) {
   this.x = x;
   this.y = y;
-  // this.sprite = 'images/char-boy.png';
-  this.sprite = randChar; //this may be a mistake and need to be fixed with Karol
+  this.sprite = randChar;
 };
 
 // Parameter: dt, a time delta between ticks
@@ -77,9 +70,9 @@ Player.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
   // all computers.
-  // this.x = this.x * dt;
-  // this.y = this.y * dt;
-  // if (this.y <= yLimit) { //reaches verticle limit
+  // this.x = 200;
+  // this.y = 400;
+  // if (this.y >= yLimit) { //reaches verticle limit
   //   this.restart();
   // }
 };
@@ -88,13 +81,13 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Player.prototype.restart = function() {
-//   this.x = playerX;
-//   this.y = playerY;
-// };
+Player.prototype.restart = function() {
+  this.x = playerX;
+  this.y = playerY;
+};
 
 Player.prototype.handleInput = function(input) {
-  //console.log(input);
+  console.log(input);
   if (this.x > 0 && input === "left") {
     this.x -= blockWidth;
   }
@@ -116,8 +109,7 @@ Player.prototype.handleInput = function(input) {
 var allEnemies = [];
 for (var i = 0; i < 3; i++) {
   // Next step: different x and y coordinates, use, for example, randomness
-  //allEnemies[i] = new Enemy(10,10,10);      //  being called
-  allEnemies[i] = new Enemy(-100, initialPositions[i], 50);      //  being called
+  allEnemies[i] = new Enemy(-100, initialPositions[i], randomSpeed);
 }
 allEnemies.push();
 // Place the player object in a variable called player
