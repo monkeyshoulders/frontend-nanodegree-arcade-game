@@ -59,7 +59,6 @@ var Player = function(x, y) {
 
 Player.prototype.update = function() {
 
-
 };
 
 Player.prototype.render = function() {
