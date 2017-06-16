@@ -4,7 +4,7 @@ var blockWidth = 101;
 var xLimit = 505;
 var yLimit = -30;
 var enemyStart = -100;
-var playerX = 200;
+var playerX = 7;
 var playerY = 400;
 var playerH = 83;
 var playerW = 68;
@@ -26,7 +26,7 @@ var randChar = chars[Math.floor(Math.random() * chars.length)];
 var Enemy = function(x, y, speed) {
   this.x = x;
   this.y = y;
-  this.speed = Math.floor(Math.random() * 350);
+  this.speed = Math.floor(Math.random() * 300);
   this.sprite = 'images/enemy-bug.png';
 };
 
@@ -35,22 +35,13 @@ Enemy.prototype.update = function(dt) {
  if (this.x >= xLimit) {
    this.x = enemyStart;
  }
-  this.checkCollision();
 };
 
-// Draw the enemy on the screen, required method for game
+
 Enemy.prototype.render = function() {
-  //ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  // https://developer.mozilla.org/en/docs/Web/API/CanvasRenderingContext2D/drawImage
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Enemy.prototype.checkCollision = function() {
-//   if ((this.x == player.x) && (this.y == player.y)) {
-//       player.restart();
-//   }
-//
-};
 var Player = function(x, y) {
   this.x = x;
   this.y = y;
@@ -58,8 +49,10 @@ var Player = function(x, y) {
 };
 
 Player.prototype.update = function() {
-
-};
+  if (this.y <= -15) {
+    player.restart();
+  }
+ };
 
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -91,12 +84,12 @@ Player.prototype.handleInput = function(input) {
 var allEnemies = [];
 
 for (var i = 0; i < 3; i++) {
-// Next step: different x and y coordinates, use, for example, randomness
   allEnemies[i] = new Enemy(-100, initialPositions[i]);
 }
 allEnemies.push();
+
 // Place the player object in a variable called player
-var player = new Player(200, 400);
+var player = new Player(7, 400);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
