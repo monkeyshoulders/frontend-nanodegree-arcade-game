@@ -15,14 +15,7 @@ var chars = [
 ];
 // random character spawn everytime game is reset
 var randChar = chars[Math.floor(Math.random() * chars.length)];
-// Karols bounding box rendering for objects in game
-function drawBox(x,y, width, height, color) {
-  ctx.beginPath();
-    ctx.rect(x, y, width, height);
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = color;
-    ctx.stroke();
-}
+
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -51,7 +44,7 @@ Enemy.prototype.collision = function() {
     this.x + this.width > player.x &&
     this.y < player.y + player.height &&
     this.height + this.y > player.y) {
-  // sets player to a restart point instead of initialPlayer position
+    // sets player to a restart point instead of initialPlayer position
     player.restart();
   }
 
@@ -60,7 +53,6 @@ Enemy.prototype.collision = function() {
 //renders Enemy
 Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  // drawBox(this.x + 3, this.y + 70, 97, 74, "red");
 };
 
 var Player = function(x, y) {
@@ -76,11 +68,12 @@ Player.prototype.update = function() {
     player.restart();
   }
 };
+
 // renders player sprite on screen
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  // drawBox(this.x + 18, this.y + 62, 65, 76, "blue");
 };
+
 // sets a restart point for player different from initialPlayer position
 Player.prototype.restart = function() {
   this.x = 205;
@@ -103,6 +96,7 @@ Player.prototype.handleInput = function(input) {
     this.y += blockHeight;
   }
 };
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
@@ -110,6 +104,7 @@ for (var i = 0; i < 3; i++) {
   allEnemies[i] = new Enemy(-100, initialPositions[i]);
 }
 allEnemies.push();
+
 // Place the player object in a variable called player
 var player = new Player(7, 400);
 // This listens for key presses and sends the keys to your
