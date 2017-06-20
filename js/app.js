@@ -28,7 +28,7 @@ var Enemy = function(x, y, speed) {
 };
 
 Enemy.prototype.update = function(dt) {
-  this.x = this.x + this.speed * dt;
+  this.x += this.speed * dt;
   if (this.x >= xLimit) {
     this.x = enemyStart;
   }
@@ -65,7 +65,7 @@ var Player = function(x, y) {
 
 Player.prototype.update = function() {
   if (this.y <= -15) {
-    player.restart();
+    this.restart();
   }
 };
 
@@ -103,7 +103,6 @@ var allEnemies = [];
 for (var i = 0; i < 3; i++) {
   allEnemies[i] = new Enemy(-100, initialPositions[i]);
 }
-allEnemies.push();
 
 // Place the player object in a variable called player
 var player = new Player(7, 400);
